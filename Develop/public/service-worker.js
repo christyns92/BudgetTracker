@@ -73,6 +73,7 @@ self.addEventListener("activate", event => {
         caches
         .keys()
         .then(cacheNames => {
+
             // return array of cache names that are old to delete
             return cacheNames.filter(
                 cacheName => !currentCaches.includes(cacheName)
@@ -116,6 +117,7 @@ self.addEventListener("fetch", event => {
     }
 
     // use cache first for all other requests for performance
+
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             if (cachedResponse) {
